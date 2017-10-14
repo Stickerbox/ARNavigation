@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationDescription" customModule="NavigationDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="container" destination="2r7-jZ-Rm9" id="mDv-hB-KBK"/>
+                <outlet property="descriptionLabel" destination="qbO-Tw-iTy" id="bZX-M4-4zb"/>
+                <outlet property="directionsButton" destination="ASd-qd-81S" id="xsy-qC-y6I"/>
+                <outlet property="nameLabel" destination="CUx-F5-7rG" id="ShR-c0-22n"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <visualEffectView opaque="NO" contentMode="scaleToFill" id="2r7-jZ-Rm9">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Cra-WN-GSC">
+                <rect key="frame" x="0.0" y="0.0" width="418" height="128"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-qd-81S">
+                        <rect key="frame" x="433" y="39" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="QKu-Ux-Z2F"/>
+                            <constraint firstAttribute="height" constant="50" id="v0S-8i-5bj"/>
+                        </constraints>
+                        <state key="normal" title="Directions" image="directions"/>
+                        <connections>
+                            <action selector="directionsTapped" destination="-1" eventType="touchUpInside" id="N4f-kK-MbZ"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RCo-7s-SUU">
+                        <rect key="frame" x="15" y="10" width="418" height="108"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUx-F5-7rG">
+                                <rect key="frame" x="0.0" y="0.0" width="418" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="qxw-c6-dmb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbO-Tw-iTy">
+                                <rect key="frame" x="0.0" y="45" width="418" height="63"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RCo-7s-SUU" firstAttribute="top" secondItem="Cra-WN-GSC" secondAttribute="top" constant="10" id="IF6-AZ-ttX"/>
+                    <constraint firstItem="ASd-qd-81S" firstAttribute="centerY" secondItem="Cra-WN-GSC" secondAttribute="centerY" id="Vrt-aI-goC"/>
+                    <constraint firstItem="RCo-7s-SUU" firstAttribute="leading" secondItem="Cra-WN-GSC" secondAttribute="leading" constant="15" id="azu-My-PS8"/>
+                    <constraint firstItem="ASd-qd-81S" firstAttribute="leading" secondItem="RCo-7s-SUU" secondAttribute="trailing" constant="15" id="cN1-XO-wYD"/>
+                    <constraint firstAttribute="trailing" secondItem="ASd-qd-81S" secondAttribute="trailing" constant="15" id="olz-qH-MDV"/>
+                    <constraint firstAttribute="bottom" secondItem="RCo-7s-SUU" secondAttribute="bottom" constant="10" id="wMg-cH-FdW"/>
+                </constraints>
+            </view>
+            <blurEffect style="dark"/>
+            <point key="canvasLocation" x="13" y="322"/>
+        </visualEffectView>
+    </objects>
+    <resources>
+        <image name="directions" width="200" height="200"/>
+    </resources>
+</document>
