@@ -11,8 +11,9 @@ import SceneKit
 import ARKit
 import ARCL
 import CoreData
+import CoreLocation
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ARViewController: UIViewController, ARSCNViewDelegate {
     
     var sceneLocationView = SceneLocationView()
     var locationView = LocationDescription()
@@ -25,6 +26,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     lazy var mapViewController: MapViewController = {
         let mapController = MapViewController()
+        mapController.didUpdateLocation = { location in self.updateNavigationLine(with: location) }
         mapController.sceneLocationView = sceneLocationView
         return mapController
     }()
@@ -47,16 +49,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     lazy var mapView = mapViewController.view!
-    var navigationNodes = [LocationNode]()
+    var allNodesForRoute = [LocationNode]()
+    var currentlyDisplayingNavigationNodes = [LocationNode]()
     
     var mapConstraints: ViewContraints!
-    
-    // MARK: Lifecycle
+}
+
+// MARK: Lifecycle
+extension ARViewController {
+
     override var canBecomeFirstResponder: Bool { return true }
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if event?.subtype == .motionShake {
-            if navigationNodes.isEmpty {
+            if allNodesForRoute.isEmpty {
                 Location.deleteAll()
                 locationView.alpha = 0.0
                 return
@@ -67,8 +73,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func removeCurrentNavigationNodes() {
-        navigationNodes.forEach { sceneLocationView.removeLocationNode(locationNode: $0) }
-        navigationNodes = [LocationNode]()
+        allNodesForRoute.forEach { sceneLocationView.removeLocationNode(locationNode: $0) }
+        allNodesForRoute = [LocationNode]()
     }
     
     override func viewDidLoad() {
@@ -92,7 +98,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 }
 
 // MARK: View setup
-extension ViewController {
+extension ARViewController {
     
     private func setupView() {
         
@@ -102,10 +108,7 @@ extension ViewController {
         view.addSubview(locationView)
         view.addSubview(backgroundView)
         view.addSubview(mapView)
-        
-        sceneLocationView.fillSuperview()
-        backgroundView.fillSuperview()
-        setupMapConstraints()
+
         mapViewController.didMove(toParentViewController: self)
         
         mapView.layer.cornerRadius = 20
@@ -113,44 +116,14 @@ extension ViewController {
         mapView.alpha = 0.7
         mapView.layer.masksToBounds = true
         
-        setupLocationView()
-        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         sceneLocationView.addGestureRecognizer(gesture)
     }
     
-    private func setupMapConstraints() {
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        let left = mapView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
-        left.priority = UILayoutPriority(rawValue: 999)
-        
-        let right = mapView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30)
-        
-        let top = mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30)
-        
-        let bottom = mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        bottom.priority = UILayoutPriority(rawValue: 999)
-        
-        let width = mapView.widthAnchor.constraint(equalToConstant: 150)
-        let height = mapView.heightAnchor.constraint(equalToConstant: 150)
-        
-        NSLayoutConstraint.activate([left, right, top, bottom, width, height])
-        
-        self.mapConstraints = ViewContraints(left: left, right: right, top: top, bottom: bottom, width: width, height: height)
-    }
-    
-    private func setupLocationView() {
-        locationView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 15, rightConstant: 15, widthConstant: nil, heightConstant: nil)
-        locationView.layer.masksToBounds = true
-        locationView.layer.cornerRadius = 20
-        locationView.layer.borderWidth = 1
-        locationView.layer.borderColor = UIColor.darkGray.cgColor
-        locationView.alpha = 0.0
-    }
 }
 
 // MARK: Map Location Handling
-extension ViewController {
+extension ARViewController {
     
     @objc func handleTap(recognizer: UITapGestureRecognizer) {
         guard let sceneView = recognizer.view as? SceneLocationView else { return }
@@ -178,15 +151,32 @@ extension ViewController {
     private func displayDirections(to location: Location?) {
         removeCurrentNavigationNodes()
         guard let location = location else { return }
-        mapViewController.generateRoute(for: location) { (polyline) in
+
+        mapViewController.generateRoute(for: location) { polyline in
             guard let polyline = polyline else { return }
-            self.navigationNodes = self.sceneLocationView.nodes(for: polyline)
-            self.navigationNodes.forEach { self.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0) }
+
+            self.allNodesForRoute = self.sceneLocationView.nodes(for: polyline)
+            self.currentlyDisplayingNavigationNodes = self.allNodesForRoute.elements(from: 0, to: 3)
+            self.currentlyDisplayingNavigationNodes.forEach { self.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0) }
+        }
+    }
+    
+    private func updateNavigationLine(with location: CLLocation?) {
+        guard let lastCurrentNode = currentlyDisplayingNavigationNodes.last,
+            let index = allNodesForRoute.index(of: lastCurrentNode),
+            let location = location else { return }
+        
+        let distanceToLastNodeInMeters = lastCurrentNode.location.distance(from: location)
+        
+        if distanceToLastNodeInMeters < 1 {
+            sceneLocationView.removeLocationNode(locationNode: currentlyDisplayingNavigationNodes[0])
+            currentlyDisplayingNavigationNodes = allNodesForRoute.elements(from: index - 1, to: index + 1)
+            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: currentlyDisplayingNavigationNodes[2])
         }
     }
     
     @objc func mapViewTapped() {
-
+        
         if self.mapConstraints.height.isActive {
             self.mapConstraints.right.constant = 0
             self.mapView.alpha = 1.0
@@ -209,7 +199,8 @@ extension ViewController {
 }
 
 // MARK: NSFetchedResultsControllerDelegate
-extension ViewController: NSFetchedResultsControllerDelegate {
+extension ARViewController: NSFetchedResultsControllerDelegate {
+
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         updateView()
     }
@@ -235,3 +226,4 @@ extension ViewController: NSFetchedResultsControllerDelegate {
         }
     }
 }
+

@@ -17,8 +17,8 @@ extension UIColor {
         
         scanner.scanHexInt64(&rgbValue)
         
-        let r = (rgbValue & 0xff0000) >> 16
-        let g = (rgbValue & 0xff00) >> 8
+        let r = (rgbValue & 0xff) >> 16
+        let g = (rgbValue & 0xff) >> 8
         let b = rgbValue & 0xff
         
         self.init(

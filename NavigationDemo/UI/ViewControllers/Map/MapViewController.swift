@@ -19,6 +19,8 @@ class MapViewController: UIViewController {
     let addButton = AddButton()
     let locationButton = LocationButton()
     var sceneLocationView: SceneLocationView!
+    
+    var didUpdateLocation: ((CLLocation?) -> Void)?
         
     fileprivate var _fetchedResultsController: NSFetchedResultsController<Location>?
     fileprivate var fetchedResultsController: NSFetchedResultsController<Location> {
@@ -145,6 +147,10 @@ extension MapViewController: CLLocationManagerDelegate {
         let camera = map.camera
         camera.heading = newHeading.magneticHeading
         map.setCamera(camera, animated: true)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        didUpdateLocation?(manager.location)
     }
 }
 

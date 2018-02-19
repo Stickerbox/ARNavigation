@@ -85,8 +85,8 @@ extension LocationNode {
             
             let distance = currentLocation.distance(from: nextLocation)
             
-            let box = SCNBox(width: 1, height: 0.2, length: CGFloat(distance), chamferRadius: 0)
-            box.firstMaterial?.diffuse.contents =  UIColor(hue: 0.589, saturation: 0.98, brightness: 1.0, alpha: 1)
+            let box = SCNBox(width: 0.7, height: 0.2, length: CGFloat(distance), chamferRadius: 5)
+            box.firstMaterial?.diffuse.contents = UIColor(hue: 0.589, saturation: 0.98, brightness: 1.0, alpha: 1)
             
             let bearing = 0 - bearingBetweenLocations(point1: currentLocation, point2: nextLocation)
             

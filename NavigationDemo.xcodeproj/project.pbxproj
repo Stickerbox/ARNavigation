@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C34B4E31F8F5049002490BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34B4E21F8F5049002490BC /* AppDelegate.swift */; };
 		9C34B4E51F8F5049002490BC /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B4E41F8F5049002490BC /* art.scnassets */; };
-		9C34B4E71F8F5049002490BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34B4E61F8F5049002490BC /* ViewController.swift */; };
+		9C34B4E71F8F5049002490BC /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34B4E61F8F5049002490BC /* ARViewController.swift */; };
 		9C34B4EA1F8F5049002490BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B4E81F8F5049002490BC /* Main.storyboard */; };
 		9C34B4EC1F8F5049002490BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B4EB1F8F5049002490BC /* Assets.xcassets */; };
 		9C34B4EF1F8F5049002490BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C34B4ED1F8F5049002490BC /* LaunchScreen.storyboard */; };
@@ -27,6 +27,9 @@
 		9C8D64341F90F44A006F8BB4 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8D64321F90F44A006F8BB4 /* Location+CoreDataProperties.swift */; };
 		9C8D64361F90FB07006F8BB4 /* NavigationDemo.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 9C8D642E1F90F359006F8BB4 /* NavigationDemo.xcdatamodel */; };
 		9C8D643B1F921A3E006F8BB4 /* SceneLocationView+MKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8D643A1F921A3E006F8BB4 /* SceneLocationView+MKPolyline.swift */; };
+		9C95C295203AF7A1006B1948 /* ARViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95C294203AF7A1006B1948 /* ARViewController+Constraints.swift */; };
+		9C95C297203AF898006B1948 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95C296203AF898006B1948 /* Array+Extensions.swift */; };
+		9C95C299203AFC4D006B1948 /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95C298203AFC4D006B1948 /* ARViewModel.swift */; };
 		D7CF50B48A42F114A4FC5ECD /* Pods_NavigationDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5A02488981071CA47FA427 /* Pods_NavigationDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +40,7 @@
 		9C34B4DF1F8F5049002490BC /* NavigationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C34B4E21F8F5049002490BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C34B4E41F8F5049002490BC /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		9C34B4E61F8F5049002490BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9C34B4E61F8F5049002490BC /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		9C34B4E91F8F5049002490BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C34B4EB1F8F5049002490BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C34B4EE1F8F5049002490BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +59,9 @@
 		9C8D64311F90F44A006F8BB4 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9C8D64321F90F44A006F8BB4 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9C8D643A1F921A3E006F8BB4 /* SceneLocationView+MKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneLocationView+MKPolyline.swift"; sourceTree = "<group>"; };
+		9C95C294203AF7A1006B1948 /* ARViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+Constraints.swift"; sourceTree = "<group>"; };
+		9C95C296203AF898006B1948 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		9C95C298203AFC4D006B1948 /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +123,7 @@
 			path = NavigationDemo;
 			sourceTree = "<group>";
 		};
-		9C567A031F8F5C8600C383F1 /* Helpers */ = {
+		9C567A031F8F5C8600C383F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				9C7178B21F90198A00FE677D /* ViewConstraints.swift */,
@@ -125,8 +131,9 @@
 				9C5679FF1F8F564600C383F1 /* UIImage+Extensions.swift */,
 				9C567A011F8F586300C383F1 /* LocationTag.swift */,
 				9C567A071F8F658B00C383F1 /* UIColor+Extensions.swift */,
+				9C95C296203AF898006B1948 /* Array+Extensions.swift */,
 			);
-			path = Helpers;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9C567A041F8F5C9000C383F1 /* Utils */ = {
@@ -136,7 +143,7 @@
 				9C34B4EB1F8F5049002490BC /* Assets.xcassets */,
 				9C34B4ED1F8F5049002490BC /* LaunchScreen.storyboard */,
 				9C34B4E81F8F5049002490BC /* Main.storyboard */,
-				9C567A031F8F5C8600C383F1 /* Helpers */,
+				9C567A031F8F5C8600C383F1 /* Extensions */,
 				9C8D643A1F921A3E006F8BB4 /* SceneLocationView+MKPolyline.swift */,
 			);
 			path = Utils;
@@ -182,7 +189,9 @@
 		9C7178AB1F8FD6D700FE677D /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				9C34B4E61F8F5049002490BC /* ViewController.swift */,
+				9C34B4E61F8F5049002490BC /* ARViewController.swift */,
+				9C95C294203AF7A1006B1948 /* ARViewController+Constraints.swift */,
+				9C95C298203AFC4D006B1948 /* ARViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -349,12 +358,15 @@
 				9C7178AE1F8FD6E900FE677D /* MapViewController.swift in Sources */,
 				9C7178B31F90198A00FE677D /* ViewConstraints.swift in Sources */,
 				9C8D64361F90FB07006F8BB4 /* NavigationDemo.xcdatamodel in Sources */,
-				9C34B4E71F8F5049002490BC /* ViewController.swift in Sources */,
+				9C34B4E71F8F5049002490BC /* ARViewController.swift in Sources */,
 				9C8D642D1F90D63B006F8BB4 /* Buttons.swift in Sources */,
 				9C567A0D1F8F7A9700C383F1 /* LocationDescription.swift in Sources */,
 				9C567A021F8F586300C383F1 /* LocationTag.swift in Sources */,
+				9C95C297203AF898006B1948 /* Array+Extensions.swift in Sources */,
+				9C95C299203AFC4D006B1948 /* ARViewModel.swift in Sources */,
 				9C8D64301F90F388006F8BB4 /* CoreDataStack.swift in Sources */,
 				9C5679FD1F8F525800C383F1 /* AutoLayout+Extensions.swift in Sources */,
+				9C95C295203AF7A1006B1948 /* ARViewController+Constraints.swift in Sources */,
 				9C567A001F8F564600C383F1 /* UIImage+Extensions.swift in Sources */,
 				9C567A081F8F658B00C383F1 /* UIColor+Extensions.swift in Sources */,
 				9C34B4E31F8F5049002490BC /* AppDelegate.swift in Sources */,
@@ -498,13 +510,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = XQP2GL9H76;
+				DEVELOPMENT_TEAM = 8MMCHWVX54;
 				INFOPLIST_FILE = NavigationDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stickerbox.arnavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65583d7f-0df0-478e-bbe1-97d6fd6f8800";
-				PROVISIONING_PROFILE_SPECIFIER = "Xcode 8 Wildcard (Personal)";
+				PROVISIONING_PROFILE = "9939a275-64ab-4d02-984a-b03a07e0b066";
+				PROVISIONING_PROFILE_SPECIFIER = "Xcode-8-Wildcard";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
